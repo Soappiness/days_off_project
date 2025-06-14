@@ -1,8 +1,12 @@
 using Application;
+using Application.Middleware;
 using Application.Profiles;
+using Application.Validators;
+using Domain.Models.Requests;
 using Domain.Ports.Primary;
 using Domain.Ports.Secondary;
 using Domain.Services;
+using FluentValidation;
 using Infrastructure;
 using Infrastructure.Adapters;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +26,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IDayOffRepository, DayOffRepository>();
 builder.Services.AddTransient<IDayOffService, DayOffService>();
+
+builder.Services.AddScoped<IValidator<DayOffCreateDto>, DayOffDtoValidator>();
+
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 using (var scope = app.Services.CreateScope())
 {

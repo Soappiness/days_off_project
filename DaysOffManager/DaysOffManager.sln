@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36203.30 d17.14
+VisualStudioVersion = 17.14.36203.30
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{AEB9B199-BACC-45F1-98B5-8697C6BE98DB}"
 EndProject
@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastru
 	ProjectSection(ProjectDependencies) = postProject
 		{AEB9B199-BACC-45F1-98B5-8697C6BE98DB} = {AEB9B199-BACC-45F1-98B5-8697C6BE98DB}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{43A47F1E-F224-4980-A058-3D4E4BA2739A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +36,10 @@ Global
 		{7FAD2693-A7BD-464D-B114-E1B32DD00357}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FAD2693-A7BD-464D-B114-E1B32DD00357}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FAD2693-A7BD-464D-B114-E1B32DD00357}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43A47F1E-F224-4980-A058-3D4E4BA2739A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43A47F1E-F224-4980-A058-3D4E4BA2739A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43A47F1E-F224-4980-A058-3D4E4BA2739A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43A47F1E-F224-4980-A058-3D4E4BA2739A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
