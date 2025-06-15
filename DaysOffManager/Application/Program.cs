@@ -3,6 +3,7 @@ using Application.Middleware;
 using Application.Models.Requests;
 using Application.Profiles;
 using Application.Validators;
+using Asp.Versioning;
 using Domain.Models.Requests;
 using Domain.Ports.Primary;
 using Domain.Ports.Secondary;
@@ -20,6 +21,20 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddApiVersioning(options =>
+{
+    options.DefaultApiVersion = new ApiVersion(1, 0);
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.ReportApiVersions = true;
+})
+    .AddMvc()
+    .AddApiExplorer(options =>
+{
+    options.GroupNameFormat = "'v'V";
+    options.SubstituteApiVersionInUrl = true;
+});
+
 builder.Services.AddAutoMapper(typeof(DayOffProfile));
 
 builder.Services.AddDbContext<AppDbContext>(options =>
