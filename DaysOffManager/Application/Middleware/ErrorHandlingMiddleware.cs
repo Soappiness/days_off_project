@@ -1,6 +1,5 @@
 ﻿using Application.Models.Response;
 using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Application.Middleware
 {
@@ -38,16 +37,26 @@ namespace Application.Middleware
             {
                 ArgumentException => StatusCodes.Status400BadRequest,
                 ValidationException => StatusCodes.Status400BadRequest,
+                InvalidOperationException => StatusCodes.Status422UnprocessableEntity,
                 KeyNotFoundException => StatusCodes.Status404NotFound,
                 _ => StatusCodes.Status500InternalServerError
             };
 
             context.Response.StatusCode = statusCode;
 
+            var title = exception switch
+            {
+                ArgumentException => "Bad Request",
+                ValidationException => "Validation Error",
+                InvalidOperationException => "Unprocessable Entity",
+                KeyNotFoundException => "Not Found",
+                _ => "Internal Server Error"
+            };
+
             var errorResponse = new ErrorResponse
             {
                 StatusCode = statusCode,
-                Title = exception is ArgumentException ? "Bad Request" : "Server Error",
+                Title = title,
                 Message = exception.Message,
                 Details = exception.StackTrace
             };
@@ -57,7 +66,7 @@ namespace Application.Middleware
                 errorResponse = new ErrorResponse
                 {
                     StatusCode = statusCode,
-                    Title = "Validation Error",
+                    Title = title,
                     Message = validationException.Message,
                     Details = string.Join(", ", validationException.Errors.Select(e => e.ErrorMessage))
                 };

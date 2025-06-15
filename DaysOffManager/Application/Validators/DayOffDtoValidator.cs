@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Application.Validators
 {
-    public class DayOffDtoValidator: AbstractValidator<DayOffCreateDto>
+    public class DayOffDtoValidator : AbstractValidator<DayOffCreateDto>
     {
         public DayOffDtoValidator()
         {

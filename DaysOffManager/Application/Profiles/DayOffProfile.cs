@@ -3,7 +3,7 @@ using AutoMapper;
 
 namespace Application.Profiles
 {
-    public class DayOffProfile: Profile
+    public class DayOffProfile : Profile
     {
         public DayOffProfile()
         {
@@ -29,6 +29,7 @@ namespace Application.Profiles
                 .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
                 .ForMember(dest => dest.StatusReason, opt => opt.MapFrom(src => src.StatusReason))
+                .ForMember(dest => dest.StatusAcceptanceDate, opt => opt.MapFrom(src => src.StatusAcceptanceDate))
                 .ForMember(dest => dest.EmployeeId, opt => opt.MapFrom(src => src.EmployeeId))
                 .ForMember(dest => dest.Comments, opt => opt.MapFrom(src => src.Comments));
         }

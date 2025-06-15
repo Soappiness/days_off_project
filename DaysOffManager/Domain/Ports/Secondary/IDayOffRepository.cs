@@ -7,5 +7,7 @@ namespace Domain.Ports.Secondary
         Task<DayOff> GetById(Guid id);
 
         Task<DayOff> CreateDayOff(DayOff dayOff);
+
+        Task<DayOff> UpdateDayOff(DayOff dayOff);
     }
 }
