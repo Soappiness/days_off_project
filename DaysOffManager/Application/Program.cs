@@ -1,5 +1,6 @@
 using Application;
 using Application.Middleware;
+using Application.Models.Requests;
 using Application.Profiles;
 using Application.Validators;
 using Domain.Models.Requests;
@@ -28,6 +29,7 @@ builder.Services.AddScoped<IDayOffRepository, DayOffRepository>();
 builder.Services.AddTransient<IDayOffService, DayOffService>();
 
 builder.Services.AddScoped<IValidator<DayOffCreateDto>, DayOffDtoValidator>();
+builder.Services.AddScoped<IValidator<StatusReasonRequestDto>, StatusReasonRequestDtoValidator>();
 
 var app = builder.Build();
 

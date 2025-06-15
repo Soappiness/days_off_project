@@ -16,6 +16,8 @@ namespace Application.Models.Response
 
         public string? StatusReason { get; set; }
 
+        public DateTime? StatusAcceptanceDate { get; set; }
+
         public Guid EmployeeId { get; set; }
 
         public string? Comments { get; set; }
