@@ -7,10 +7,9 @@ namespace Domain.Services
     public sealed class DayOffService : IDayOffService
     {
         private readonly IDayOffRepository _dayOffRepository;
-        public DayOffService(
-            IDayOffRepository dayOffRepository
-            ) 
-        { 
+
+        public DayOffService(IDayOffRepository dayOffRepository)
+        {
             _dayOffRepository = dayOffRepository;
         }
 
@@ -33,9 +32,37 @@ namespace Domain.Services
                 throw new ArgumentException("Start date must be before end date while submitting a new day off.");
             }
 
-            var createdDayOff = await _dayOffRepository.CreateDayOff(dayOffDetails);
+            return await _dayOffRepository.CreateDayOff(dayOffDetails);
+        }
 
-            return createdDayOff;
+        public async Task<DayOff> ApproveDayOff(Guid id, string statusReason)
+        {
+            var dayOff = await GetById(id);
+
+            if (dayOff == null)
+            {
+                throw new KeyNotFoundException($"Day off with ID {id} not found.");
+            }
+
+            dayOff.Approve();
+            dayOff.StatusReason = statusReason ?? null;
+
+            return await _dayOffRepository.UpdateDayOff(dayOff);
+        }
+
+        public async Task<DayOff> RefuseDayOff(Guid id, string statusReason)
+        {
+            var dayOff = await GetById(id);
+
+            if (dayOff == null)
+            {
+                throw new KeyNotFoundException($"Day off with ID {id} not found.");
+            }
+
+            dayOff.Refuse();
+            dayOff.StatusReason = statusReason ?? null;
+
+            return await _dayOffRepository.UpdateDayOff(dayOff);
         }
     }
 }

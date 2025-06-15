@@ -21,5 +21,13 @@ namespace Infrastructure.Adapters
 
             return dayOff;
         }
+
+        public async Task<DayOff> UpdateDayOff(DayOff dayOff)
+        {
+            _context.DaysOffs.Update(dayOff);
+            await _context.SaveChangesAsync();
+
+            return dayOff;
+        }
     }
 }
