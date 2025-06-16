@@ -20,3 +20,6 @@ Ce projet intègre deux User stories :
  - Approbation ou rejet d'une demande de congé
 
 Ce projet dispose de tests unitaires réalisés avec `xUnit` afin de tester la couche `Domain`.
+
+### Exécution des tests
+Pour exécuter les tests de la couche `Tests` je vous invite à utiliser l'`Explorateur de tests` de Visual Studio qui les détectera automatiquement. Vous pourrez les exécuter directement depuis cet utilitaire.
